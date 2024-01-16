@@ -27,11 +27,19 @@ Route::post('/article/create', [ArticleController::class, 'crearArticulo'])->nam
 
 Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show'); // visualización artículo
 
-Route::get('/{categoria}/{slug}', [ArticleController::class, 'showWithSlug'])->name('article.showWithSlug'); // visualización artículo a través de categorias y un slug (único)
+Route::get('/article/edit/{id}', [ArticleController::class, 'editarArticulo'])->name('article.edit'); // edición articulo
 
 Route::put('/article/edit/{id}', [ArticleController::class, 'update'])->name('article.update'); // procesar cambios artículo
 
-Route::get('/article/edit/{id}', [ArticleController::class, 'editarArticulo'])->name('article.edit'); // edición articulo
+Route::middleware(['verificar.sesion'])->group(function () {
+    Route::get('/carrito', [ArticleController::class, 'verCarrito']); // ver el carrito de un usuario en sesión
+});
+
+Route::middleware(['verificar.sesion'])->group(function () {
+    Route::put('/carrito/add/{id}', [ArticleController::class, 'agregarCarrito'])->name('carrito.add'); // agregar articulo al carrito de un usuario en sesión
+});
+
+Route::get('/{categoria}/{slug}', [ArticleController::class, 'showWithSlug'])->name('article.showWithSlug'); // visualización artículo a través de categorias y un slug (único)
 
 Route::delete('/article/eliminarArticulo/{id}', [ArticleController::class, 'eliminarArticulo'])->name('article.delete'); // eliminación artículo
 

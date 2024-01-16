@@ -23,7 +23,7 @@ class ArticleController extends Controller
         if (!$article) {
             abort(404);
         }
-        return view('articleShow', compact('article'));
+        return view('articleShow', ['article' => $article]);
     }
 
     public function showWithSlug($category_name, $slug)
@@ -45,7 +45,7 @@ class ArticleController extends Controller
             if (!$article) {
                 abort(404);
             }
-            return view('articleShow', compact('article'));
+            return view('articleShow', ['article' => $article]);
         } else {
             abort(404);
         }
@@ -80,7 +80,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        return view('editArticulo', compact('article'));
+        return view('editArticulo', ['article' => $article]);
     }
     public function update(Request $request, $id)
     {
@@ -119,8 +119,35 @@ class ArticleController extends Controller
         })->get();
 
         // Pasamos los artículos a la vista
-        return view('novedades', compact('articles'));
+        return view('novedades', ['articles' => $articles]);
     }
+
+    public function agregarCarrito(Request $request, $idArticulo)
+    {
+        $article = Article::findOrFail($idArticulo);
+
+        $carrito = $request->session()->get('carrito', []);
+
+        $carrito[] = [
+            'id' => $idArticulo,
+            'title' => $article->title,
+            'content' => $article->content,
+            //'categorias' => $article->categorias(),
+            'slug' => $article->slug,
+        ];
+
+        $request->session()->put('carrito', $carrito); // actualizamos la variable de sesión
+
+        return redirect('/carrito');
+
+    }
+
+    public function verCarrito(Request $request)
+    {
+        $carrito = $request->session()->get('carrito', []);
+        return view('carrito', ['carrito' => $carrito]);
+    }
+
 
 
 }

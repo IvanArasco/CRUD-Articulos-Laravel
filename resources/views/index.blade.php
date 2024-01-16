@@ -65,11 +65,18 @@
                                     <button type="submit" class="btn btn-primary">Editar</button>
                                 </form>
 
+                                <form action="{{ route('carrito.add', $article->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                                </form>
+
                                 <form action="{{ route('article.delete', $article->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
+
                                 @endauth
                             </div>
                         </td>

@@ -30,9 +30,11 @@ class LoginController extends Controller
             "password" => $request->password
         ];
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended();
+        $remember = ($request->has('remember') ? true : false); // "mantener sesión iniciada"
+
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->put('usuario', Auth::user());
+            return redirect()->intended(); // intended = por si intentaste entrar a una web protegida por middleware
         } else {
             return redirect("login");
         }

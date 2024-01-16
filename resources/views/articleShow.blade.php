@@ -14,8 +14,7 @@
 
 <body class="antialiased">
     <div class="container mt-5" style="margin: 30px 0 50px 100px">
-        <h2> Vista del artículo: {{ $article->title }}</h2>
-
+        <h2> Vista del artículo: {{ $article->title }} </h2>
 
         <table class="table">
             <thead>

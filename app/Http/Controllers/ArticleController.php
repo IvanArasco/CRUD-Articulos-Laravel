@@ -151,15 +151,25 @@ class ArticleController extends Controller
 
     public function deleteArticleCarrito(Request $request, $idArticulo)
     {
-
         $carrito = session('carrito', []);
-        unset($carrito[$idArticulo]);
 
-        session(['carrito' => $carrito]);
+        // Tenemos que recorrer el carrito en busca de que el article->id = idArticulo
+        // Al ser un array asociativo recorremos mediante clave/valor.
+        foreach ($carrito as $indice => $article) {
+            if ($article['id'] == $idArticulo) {
+                $indiceEliminar = $indice;
+                break; // Se encontró el artículo, podemos salir del bucle
+            }
+        }
+        // Encuentra la clave del artículo en el array
+        if ($indiceEliminar !== false) {
+            unset($carrito[$indiceEliminar]);
 
+            // Vuelve a asignar el array actualizado a la sesión
+            session(['carrito' => array_values($carrito)]);
+        }
         return redirect('/carrito');
 
     }
-
 
 }

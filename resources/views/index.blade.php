@@ -89,7 +89,6 @@
             <h2>No existen artículos.</h2>
             @endif
 
-
             @if(filled($carrito))
             <a href="/carrito" class="btn btn-primary">Acceso a su carrito</a>
             @endif

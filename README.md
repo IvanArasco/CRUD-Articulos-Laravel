@@ -1,4 +1,4 @@
-La carpeta "Imagenes" contiene algunas fotos del proyecto para su visualización.
+- La carpeta "Imagenes" contiene algunas fotos del proyecto para su visualización.
 
 Funcionalidades:
 - CRUD completo de Artículos.

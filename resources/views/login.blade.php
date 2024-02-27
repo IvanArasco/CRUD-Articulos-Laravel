@@ -50,10 +50,12 @@
                                         cuenta</a>
                                 </div>
                             </div>
+                            <a href="/index" class="btn btn-primary">Volver</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </body>

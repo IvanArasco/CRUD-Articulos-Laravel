@@ -42,7 +42,7 @@
 
             </tbody>
         </table>
-
+        <a href="/index" class="btn btn-primary">Volver</a>
     </div>
 
 </body>

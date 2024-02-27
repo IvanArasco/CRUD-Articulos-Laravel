@@ -18,15 +18,15 @@
         @auth
 
         <h2> Bienvenid@ {{Auth::user()->name}}</h2>
-        <a href="{{ route('article.create') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Crear
+        <a href="{{ route('article.create') }}" class="btn btn-primary">Crear
             Artículo</a>
-        <a href="{{ route('logout') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Cerrar
+        <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar
             sesión</a>
         @else
-        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Iniciar Sesión</a>
+        <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
 
         @if (Route::has('register'))
-        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Crear
+        <a href="{{ route('register') }}" class="btn btn-primary">Crear
             cuenta</a>
         @endif
 
@@ -89,6 +89,10 @@
             <h2>No existen artículos.</h2>
             @endif
 
+
+            @if(filled($carrito))
+            <a href="/carrito" class="btn btn-primary">Acceso a su carrito</a>
+            @endif
         </div>
     </div>
 </body>

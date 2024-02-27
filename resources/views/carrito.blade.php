@@ -39,6 +39,12 @@
                                     @csrf
                                     <button type="submit" class="btn btn-info">Ver</button>
                                 </form>
+                                <form action="{{ route('carrito.deleteArticleCarrito', $article['id']) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar del carrito</button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -47,6 +53,8 @@
             </table>
 
         </div>
+        <a href="/index" class="btn btn-primary">Volver</a>
+        <a href="/index" class="btn btn-info">Pagar</a>
     </div>
 </body>
 

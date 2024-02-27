@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->put('usuario', Auth::user());
-            return redirect()->intended(); // intended = por si intentaste entrar a una web protegida por middleware
+            return redirect()->intended(); // intended = por si se intentó entrar a una web protegida por middleware
         } else {
             return redirect("login");
         }

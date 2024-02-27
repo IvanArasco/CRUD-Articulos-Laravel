@@ -10,10 +10,11 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        $carrito = session('carrito', []);
         $articles = Article::paginate(5);
 
         // Pasamos los artículos a la vista
-        return view('index', ['articles' => $articles]);
+        return view('index', ['articles' => $articles, 'carrito' => $carrito]);
     }
 
     public function show($id)
@@ -144,10 +145,21 @@ class ArticleController extends Controller
 
     public function verCarrito(Request $request)
     {
-        $carrito = $request->session()->get('carrito', []);
+        $carrito = session('carrito', []);
         return view('carrito', ['carrito' => $carrito]);
     }
 
+    public function deleteArticleCarrito(Request $request, $idArticulo)
+    {
+
+        $carrito = session('carrito', []);
+        unset($carrito[$idArticulo]);
+
+        session(['carrito' => $carrito]);
+
+        return redirect('/carrito');
+
+    }
 
 
 }

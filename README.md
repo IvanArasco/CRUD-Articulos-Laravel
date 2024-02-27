@@ -1,3 +1,5 @@
+La carpeta "Imagenes" contiene algunas fotos del proyecto para su visualización.
+
 Funcionalidades:
 - CRUD completo de Artículos.
 - Relación Artículos/Categorías.
@@ -5,3 +7,5 @@ Funcionalidades:
   
 Objetivos:
 - Pagos de pedido.
+
+
